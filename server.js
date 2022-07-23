@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
+const Item = require('./items/Item');
 const app = express();
 const connectionString = process.env.DB_URL;
 
@@ -17,19 +18,23 @@ mongoose.connect(connectionString, {
   useNewUrlParser: true,
 });
 
-const db = mongoose.connection;
-db.once('open', (_) => {
-  console.log('Database connected');
-});
-
-db.on('error', (err) => {
-  console.error('connection error');
-});
-
 // Routes
 app.get('/', async (req, res) => {
   try {
-    res.render('index.ejs');
+    const results = await Item.find();
+    res.render('index.ejs', { items: results });
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+app.post('/items', async (req, res) => {
+  try {
+    // const newItem = await req.body;
+    const newItem = new Item(req.body);
+    // console.log(newItem);
+    const doc = await newItem.save();
+    res.redirect('/');
   } catch (error) {
     console.error(error);
   }
