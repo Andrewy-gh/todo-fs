@@ -12,7 +12,7 @@ Full stack To Do List app.
 
 
 ## Optimizations
-*(optional)*
+
 
 
 
