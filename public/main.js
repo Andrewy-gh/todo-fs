@@ -17,7 +17,11 @@ const deleteItem = async (id) => {
   });
   if (res.ok) {
     const json = await res.json();
-    console.log(json);
-    window.location.reload(true);
+    const msg = document.querySelector('#msg');
+    msg.innerHTML = json;
+    setTimeout(() => {
+      msg.remove();
+      window.location.reload(true);
+    }, 1500);
   }
 };
