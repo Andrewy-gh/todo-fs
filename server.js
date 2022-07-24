@@ -32,7 +32,6 @@ app.get('/', async (req, res) => {
 
 app.post('/items', async (req, res) => {
   try {
-    console.log(req.body);
     const newItem = new Item(req.body);
     const doc = await newItem.save();
     res.redirect('/');
