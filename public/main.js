@@ -1,6 +1,16 @@
 const events = (() => {
   const getId = (e) => e.parentElement.parentElement.parentElement.dataset.id;
 
+  const updateBtn = () => {
+    const updateBtn = document.querySelectorAll('.update-btn');
+    updateBtn.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        console.log(getId(e.target));
+        console.log(e.target);
+      });
+    });
+  };
+
   const deleteBtn = () => {
     const deleteBtn = document.querySelectorAll('.delete-btn');
     deleteBtn.forEach((btn) =>
@@ -11,6 +21,7 @@ const events = (() => {
   };
 
   const init = () => {
+    updateBtn();
     deleteBtn();
   };
 
