@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const itemsSchema = new Schema(
+const itemSchema = new Schema(
   {
     title: String,
     description: String,
@@ -13,4 +13,4 @@ const itemsSchema = new Schema(
   { collection: 'todo-list' }
 );
 
-module.exports = mongoose.model('Item', itemsSchema);
+module.exports = mongoose.model('Item', itemSchema);
