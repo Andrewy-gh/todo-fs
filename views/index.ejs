@@ -83,7 +83,11 @@
           </div>
           <div>
             <label for="dueDate">due date:</label>
+            <% if (items[i].dueDate === null) { %>
+            <input type="date" name="dueDate" value="">
+            <%} else { %>
             <input type="date" name="dueDate" value="<%= items[i].dueDate.toISOString().slice(0, 10) %>">
+            <% } %>
           </div>
           <div class="flex">
             <div>priority:</div>

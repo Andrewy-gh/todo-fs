@@ -33,6 +33,7 @@ app.get('/', async (req, res) => {
 app.post('/items', async (req, res) => {
   try {
     const newItem = Item.create(req.body);
+    console.log(newItem);
     const doc = await Item.save();
     res.redirect('/');
   } catch (error) {
