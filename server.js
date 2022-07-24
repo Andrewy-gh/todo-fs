@@ -2,7 +2,6 @@ require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
-const nodemon = require('nodemon');
 const Item = require('./items/Item');
 const Project = require('./projects/Project');
 const app = express();
@@ -33,9 +32,7 @@ app.get('/', async (req, res) => {
 
 app.post('/items', async (req, res) => {
   try {
-    // const newItem = await req.body;
     const newItem = new Item(req.body);
-    // console.log(newItem);
     const doc = await newItem.save();
     res.redirect('/');
   } catch (error) {
