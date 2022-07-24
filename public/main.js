@@ -1,11 +1,23 @@
-const getId = (e) => e.parentElement.parentElement.parentElement.dataset.id;
+const events = (() => {
+  const getId = (e) => e.parentElement.parentElement.parentElement.dataset.id;
 
-const deleteBtn = document.querySelectorAll('.delete-btn');
-deleteBtn.forEach((btn) =>
-  btn.addEventListener('click', (e) => {
-    deleteItem(getId(e.target));
-  })
-);
+  const deleteBtn = () => {
+    const deleteBtn = document.querySelectorAll('.delete-btn');
+    deleteBtn.forEach((btn) =>
+      btn.addEventListener('click', (e) => {
+        deleteItem(getId(e.target));
+      })
+    );
+  };
+
+  const init = () => {
+    deleteBtn();
+  };
+
+  return { init };
+})();
+
+events.init();
 
 const deleteItem = async (id) => {
   const res = await fetch('/items', {
@@ -22,6 +34,6 @@ const deleteItem = async (id) => {
     setTimeout(() => {
       msg.remove();
       window.location.reload(true);
-    }, 1500);
+    }, 1000);
   }
 };
