@@ -82,10 +82,8 @@
             <div contenteditable="true"><%= items[i].description %></div>
           </div>
           <div>
-            <div>due date:</div>
-            <div><%= items[i].dueDate %></div>
-            <!-- <label for="dueDate">due date:</label>
-            <input type="date" name="dueDate" value="<%= items[i].dueDate.toDateString() %>"> -->
+            <label for="dueDate">due date:</label>
+            <input type="date" name="dueDate" value="<%= items[i].dueDate.toISOString().slice(0, 10) %>">
           </div>
           <div class="flex">
             <div>priority:</div>
