@@ -40,5 +40,14 @@ app.post('/items', async (req, res) => {
   }
 });
 
+app.delete('/items', async (req, res) => {
+  try {
+    const doc = await Item.findByIdAndDelete(req.body);
+    res.json('Item deleted');
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
