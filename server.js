@@ -30,6 +30,11 @@ app.get('/', async (req, res) => {
   }
 });
 
+app.get('/projects/:project', (req, res) => {
+  const project = req.params;
+  console.log(project);
+});
+
 app.post('/items', async (req, res) => {
   try {
     const newItem = Item.create(req.body);

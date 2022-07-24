@@ -57,9 +57,12 @@
       </div>
 
       <div class="flex">
+        <div class="card">
+          <div class="project-btn">All</div>
+        </div>
         <% for(let i = 0; i < projects.length; i++) {%>
         <div class="card">
-          <div><%= projects[i].title %></div>
+          <div class="project-btn"><%= projects[i].title %></div>
         </div>
         <% } %>
       </div>
