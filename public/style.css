@@ -23,3 +23,9 @@
 .formFields {
   margin: 0.25em;
 }
+
+/* update delete buttons */
+.edit-btn {
+  gap: 0.5em;
+  justify-content: flex-end;
+}
