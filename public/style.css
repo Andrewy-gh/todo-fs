@@ -15,6 +15,11 @@
   padding: 1rem;
 }
 
+.container,
+.title {
+  padding: 1rem;
+}
+
 .formFields {
   margin: 0.25em;
 }

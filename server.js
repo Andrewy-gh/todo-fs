@@ -2,7 +2,9 @@ require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
+const nodemon = require('nodemon');
 const Item = require('./items/Item');
+const Project = require('./projects/Project');
 const app = express();
 const connectionString = process.env.DB_URL;
 
@@ -21,8 +23,9 @@ mongoose.connect(connectionString, {
 // Routes
 app.get('/', async (req, res) => {
   try {
-    const results = await Item.find();
-    res.render('index.ejs', { items: results });
+    const itemsRes = await Item.find();
+    const projectsRes = await Project.find();
+    res.render('index.ejs', { projects: projectsRes, items: itemsRes });
   } catch (error) {
     console.error(error);
   }
