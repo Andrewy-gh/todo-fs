@@ -1,3 +1,7 @@
+.hidden {
+  display: none;
+}
+
 .flex {
   display: flex;
   gap: 0.5em;

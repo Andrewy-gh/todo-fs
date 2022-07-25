@@ -1,6 +1,25 @@
 const events = (() => {
   const getId = (e) => e.parentElement.parentElement.parentElement.dataset.id;
 
+  addProjectBtn = () => {
+    const addProjectBtn = document.querySelector('#add-project');
+    const addProjectForm = document.querySelector('#add-project-form');
+
+    const cancelBtn = () => {
+      const cancelBtn = document.querySelector('#cancel-btn');
+      cancelBtn.addEventListener('click', () => {
+        addProjectForm.classList.add('hidden');
+        addProjectBtn.textContent = 'Add project';
+      });
+    };
+
+    addProjectBtn.addEventListener('click', () => {
+      addProjectForm.classList.toggle('hidden');
+      addProjectBtn.textContent = '';
+      cancelBtn();
+    });
+  };
+
   const updateBtn = () => {
     const updateBtn = document.querySelectorAll('.update-btn');
     updateBtn.forEach((btn) => {
@@ -23,6 +42,7 @@ const events = (() => {
   const init = () => {
     updateBtn();
     deleteBtn();
+    addProjectBtn();
   };
 
   return { init };

@@ -43,7 +43,12 @@
         </div>
         <div id="formProjectElem" class="formFields">
           <label for="project">Project</label>
-          <input type="text" name="project" id="project" />
+          <select name="project" id="">
+            <option value="">Select one</option>
+            <% for(let i = 0; i < projects.length; i++) {%>
+            <option data-index="<%= projects[i].title %>" value="<%= projects[i].title %>"><%= projects[i].title %></option>
+            <% } %>
+          </select>
         </div>
         <div class="formFields">
           <button type="submit">Add to list</button>
@@ -67,6 +72,15 @@
             </div>
           </a>
         <% } %>
+        <div class="card">
+          <form action="/projects/" id="add-project-form" class="hidden">
+            <label for="add-project">Add project</label>
+            <input type="text" name="add-project" id="id-project-input">
+            <button  type="button" id="cancel-btn">Cancel</button>
+            <button type="submit">Submit</button>
+          </form>
+          <div id="add-project">Add project</div>
+        </div>
       </div>
     </div>
 
