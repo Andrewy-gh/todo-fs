@@ -51,6 +51,17 @@ app.post('/items', async (req, res) => {
   }
 });
 
+app.post('/projects', async (req, res) => {
+  try {
+    console.log(req.body);
+    const newProject = await new Project(req.body);
+    await newProject.save();
+    res.redirect('/');
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 app.delete('/items', async (req, res) => {
   try {
     await Item.findByIdAndDelete(req.body);

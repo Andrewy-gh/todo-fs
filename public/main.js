@@ -18,6 +18,10 @@ const events = (() => {
       addProjectBtn.textContent = '';
       cancelBtn();
     });
+
+    addProjectForm.addEventListener('submit', (e) => {
+      console.log(e.target);
+    });
   };
 
   const updateBtn = () => {

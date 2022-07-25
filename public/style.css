@@ -29,6 +29,12 @@ a {
   padding: 1rem;
 }
 
+select,
+button,
+.project-card {
+  cursor: pointer;
+}
+
 .container,
 .title {
   padding: 1rem;
@@ -41,5 +47,6 @@ a {
 
 /* update delete buttons */
 .edit-btn {
+  margin-top: 2em;
   justify-content: flex-end;
 }

@@ -56,14 +56,16 @@
       </form>
     </div>
 
+    <!-- ! Projects -->
     <div class="projects">
       <div class="title">
         <h2>Projects</h2>
       </div>
 
+      <!-- ? Project cards -->
       <div class="flex">
         <a href="/">
-          <div class="card">
+          <div class="card project-card">
             <div class="project-btn">All</div>
           </div>
         </a>
@@ -74,18 +76,21 @@
             </div>
           </a>
         <% } %>
-        <div class="card">
-          <form action="/projects/" id="add-project-form" class="hidden">
-            <label for="add-project">Add project</label>
-            <input type="text" name="add-project" id="id-project-input">
+
+        <!-- ? Add Project Form -->
+        <div class="card ">
+          <form action="/projects" method="post" id="add-project-form" class="hidden">
+            <label for="title">Add project</label>
+            <input type="text" name="title" id="id-project-input">
             <button  type="button" id="cancel-btn">Cancel</button>
             <button type="submit">Submit</button>
           </form>
-          <div id="add-project">Add project</div>
+          <div class="project-card" id="add-project">Add project</div>
         </div>
       </div>
     </div>
 
+    <!-- ! All todo list items -->
     <div class="items">
       <div class="title msg flex">
         <div><h2>Items</h2></div>
