@@ -1,3 +1,4 @@
+/* reset */
 a {
   text-decoration: none;
   color: inherit;
@@ -12,6 +13,7 @@ a {
   gap: 0.5em;
 }
 
+/* delete item message div */
 .msg {
   align-items: center;
 }
@@ -21,6 +23,7 @@ a {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
+/* basic card  */
 .card {
   background: grey;
   outline: 1px solid black;
