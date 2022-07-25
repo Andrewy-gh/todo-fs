@@ -119,9 +119,20 @@
             <div>priority:</div>
             <div><%= items[i].priority %></div>
           </div>
-          <div class="flex">
-            <div>progress:</div>
-            <div><%= items[i].progress %></div>
+
+          <div>
+            <label for="progress">Progress</label>
+            <select name="progress" id="">
+            <% const progressArr = ["todo", "doing", "done"]
+            for (let j = 0; j < progressArr.length; j++) { 
+              if (items[i].progress === progressArr[j]) {
+                const selected = "selected" %>
+              <option value="" <%=selected %>><%= progressArr[j] === 'todo' ? "To Do" : progressArr[j][0].toUpperCase() + progressArr[j].slice(1) %></option>
+              <% } else { %>
+              <option value=""><%= progressArr[j] === 'todo' ? "To Do" : progressArr[j][0].toUpperCase() + progressArr[j].slice(1) %></option>
+            <% } %>
+            <% } %>
+            </select>
           </div>
 
           <div>
@@ -131,9 +142,9 @@
               <% for(let j = 0; j < projects.length; j++) {%>
               <% if (items[i].project === projects[j].title) { 
                 const selected = "selected"%>
-              <option data-index="j" value="<%= projects[j].title %>" <%=selected %>><%= projects[j].title %></option>
+              <option data-index="<%=j %>" value="<%= projects[j].title %>" <%=selected %>><%= projects[j].title %></option>
               <%} else { %>
-              <option data-index="j" value="<%= projects[j].title %>"><%= projects[j].title %></option>
+              <option data-index="<%=j %>" value="<%= projects[j].title %>"><%= projects[j].title %></option>
               <% } %>
               <% } %>
             </select>
