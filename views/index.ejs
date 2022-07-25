@@ -61,9 +61,11 @@
           <div class="project-btn">All</div>
         </div>
         <% for(let i = 0; i < projects.length; i++) {%>
-        <div class="card">
-          <div class="project-btn"><%= projects[i].title %></div>
-        </div>
+          <a href="<%=`/projects?project=${projects[i].title}`%>">
+            <div class="card">
+              <div class="project-btn"><%= projects[i].title %></div>
+            </div>
+          </a>
         <% } %>
       </div>
     </div>

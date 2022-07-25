@@ -22,7 +22,7 @@ mongoose.connect(connectionString, {
 // Routes
 app.get('/', async (req, res) => {
   try {
-    const itemsRes = await Item.find();
+    const itemsRes = await Item.find(req.params);
     const projectsRes = await Project.find();
     res.render('index.ejs', { projects: projectsRes, items: itemsRes });
   } catch (error) {
@@ -30,14 +30,11 @@ app.get('/', async (req, res) => {
   }
 });
 
-app.get('/projects/:project', async (req, res) => {
+app.get('/projects/', async (req, res) => {
   try {
-    const projectName = req.params.project;
-    console.log(projectName);
+    const projectName = req.query.project;
     const itemRes = await Item.find({ project: projectName });
-    console.log(itemRes);
     const projectsRes = await Project.find();
-    console.log(projectsRes);
     res.render('index.ejs', { projects: projectsRes, items: itemRes });
   } catch (error) {
     console.error(error);
@@ -47,7 +44,6 @@ app.get('/projects/:project', async (req, res) => {
 app.post('/items', async (req, res) => {
   try {
     const newItem = await new Item(req.body);
-    console.log(newItem);
     await newItem.save();
     res.redirect('/');
   } catch (error) {

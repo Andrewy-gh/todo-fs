@@ -1,15 +1,6 @@
 const events = (() => {
   const getId = (e) => e.parentElement.parentElement.parentElement.dataset.id;
 
-  const projectBtn = () => {
-    const projectBtn = document.querySelectorAll('.project-btn');
-    projectBtn.forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        getProject(e.target.textContent);
-      });
-    });
-  };
-
   const updateBtn = () => {
     const updateBtn = document.querySelectorAll('.update-btn');
     updateBtn.forEach((btn) => {
@@ -30,7 +21,6 @@ const events = (() => {
   };
 
   const init = () => {
-    projectBtn();
     updateBtn();
     deleteBtn();
   };
@@ -39,13 +29,6 @@ const events = (() => {
 })();
 
 events.init();
-
-const getProject = async (project) => {
-  const res = await fetch(`/projects/${project}`, {
-    method: 'get',
-    headers: { 'Content-Type': 'application/json' },
-  });
-};
 
 const deleteItem = async (id) => {
   const res = await fetch('/items', {
