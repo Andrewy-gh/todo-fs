@@ -13,6 +13,16 @@ a {
   gap: 0.5em;
 }
 
+.title-field {
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.flow > *:not(last-child) {
+  margin-bottom: 0.5rem;
+}
+
 /* delete item message div */
 .msg {
   align-items: center;
