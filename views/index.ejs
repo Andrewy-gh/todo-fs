@@ -46,7 +46,7 @@
           <select name="project" id="">
             <option value="">Select one</option>
             <% for(let i = 0; i < projects.length; i++) {%>
-            <option data-index="<%= projects[i].title %>" value="<%= projects[i].title %>"><%= projects[i].title %></option>
+            <option data-index="<%= i %>" value="<%= projects[i].title %>"><%= projects[i].title %></option>
             <% } %>
           </select>
         </div>
@@ -120,6 +120,21 @@
             <div>project:</div>
             <div><%= items[i].project %></div>
           </div>
+          <div>
+            <label for="project">Project</label>
+            <select name="project">
+              <option value="">Select one</option>
+              <% for(let j = 0; j < projects.length; j++) {%>
+              <% if (items[i].project === projects[j].title) { 
+                var selected = "selected"%>
+              <option data-index="j" value="<%= projects[j].title %>" <%=selected %>><%= projects[j].title %></option>
+              <%} else { %>
+              <option data-index="j" value="<%= projects[j].title %>"><%= projects[j].title %></option>
+              <% } %>
+              <% } %>
+            </select>
+          </div>
+
           <div class="flex edit-btn">
             <div><button type="button" class="update-btn">Update</button></div>
             <div><button type="button" class="delete-btn">Delete</button></div>
