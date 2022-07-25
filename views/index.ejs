@@ -115,9 +115,20 @@
             <input type="date" name="dueDate" value="<%= items[i].dueDate.toISOString().slice(0, 10) %>">
             <% } %>
           </div>
-          <div class="flex">
-            <div>priority:</div>
-            <div><%= items[i].priority %></div>
+
+          <div>
+            <label for="priority">Priority</label>
+            <select name="priority" id="">
+            <% const priorityArr = ["low", "medium", "high", "urgent"]
+            for (let j = 0; j < priorityArr.length; j++) { 
+              if (items[i].priority === priorityArr[j]) {
+                const selected = "selected" %>
+              <option value="<%= priorityArr[j] %>" <%=selected %>><%= priorityArr[j][0].toUpperCase() + priorityArr[j].slice(1) %></option>
+              <% } else { %>
+              <option value="<%= priorityArr[j] %>"><%= priorityArr[j][0].toUpperCase() + priorityArr[j].slice(1) %></option>
+            <% } %>
+            <% } %>
+            </select>
           </div>
 
           <div>
@@ -127,9 +138,9 @@
             for (let j = 0; j < progressArr.length; j++) { 
               if (items[i].progress === progressArr[j]) {
                 const selected = "selected" %>
-              <option value="" <%=selected %>><%= progressArr[j] === 'todo' ? "To Do" : progressArr[j][0].toUpperCase() + progressArr[j].slice(1) %></option>
+              <option value="<%= progressArr[j]%>" <%=selected %>><%= progressArr[j][0].toUpperCase() + progressArr[j].slice(1) %></option>
               <% } else { %>
-              <option value=""><%= progressArr[j] === 'todo' ? "To Do" : progressArr[j][0].toUpperCase() + progressArr[j].slice(1) %></option>
+              <option value="<%= progressArr[j]%>"><%= progressArr[j][0].toUpperCase() + progressArr[j].slice(1) %></option>
             <% } %>
             <% } %>
             </select>
