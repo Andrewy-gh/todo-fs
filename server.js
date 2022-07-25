@@ -30,16 +30,25 @@ app.get('/', async (req, res) => {
   }
 });
 
-app.get('/projects/:project', (req, res) => {
-  const project = req.params;
-  console.log(project);
+app.get('/projects/:project', async (req, res) => {
+  try {
+    const projectName = req.params.project;
+    console.log(projectName);
+    const itemRes = await Item.find({ project: projectName });
+    console.log(itemRes);
+    const projectsRes = await Project.find();
+    console.log(projectsRes);
+    res.render('index.ejs', { projects: projectsRes, items: itemRes });
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 app.post('/items', async (req, res) => {
   try {
-    const newItem = Item.create(req.body);
+    const newItem = await new Item(req.body);
     console.log(newItem);
-    const doc = await Item.save();
+    await newItem.save();
     res.redirect('/');
   } catch (error) {
     console.error(error);
@@ -48,7 +57,7 @@ app.post('/items', async (req, res) => {
 
 app.delete('/items', async (req, res) => {
   try {
-    const doc = await Item.findByIdAndDelete(req.body);
+    await Item.findByIdAndDelete(req.body);
     res.json('Item deleted');
   } catch (error) {
     console.error(error);

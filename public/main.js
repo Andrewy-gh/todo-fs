@@ -5,7 +5,6 @@ const events = (() => {
     const projectBtn = document.querySelectorAll('.project-btn');
     projectBtn.forEach((btn) => {
       btn.addEventListener('click', (e) => {
-        // console.log(e.target.textContent);
         getProject(e.target.textContent);
       });
     });
@@ -42,7 +41,7 @@ const events = (() => {
 events.init();
 
 const getProject = async (project) => {
-  const res = await fetch(`projects/${project}`, {
+  const res = await fetch(`/projects/${project}`, {
     method: 'get',
     headers: { 'Content-Type': 'application/json' },
   });
