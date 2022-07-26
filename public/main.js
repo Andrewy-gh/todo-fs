@@ -24,8 +24,19 @@ const events = (() => {
     const updateBtn = document.querySelectorAll('.update-btn');
     updateBtn.forEach((btn) => {
       btn.addEventListener('click', (e) => {
-        console.log(getId(e.target));
-        console.log(e.target);
+        // console.log(getId(e.target));
+        // console.log(document.querySelector(`[data-id="${getId(e.target)}"]`));
+        const values = document.querySelectorAll(`[data-${getId(e.target)}]`);
+        const req = {};
+        req['_id'] = getId(e.target);
+        req.data = {};
+        Array.from(values).forEach(
+          (v) =>
+            (req.data[v.dataset[`${getId(e.target)}`]] =
+              v.value || v.textContent)
+        );
+        // console.log(req);
+        updateItem(req);
       });
     });
   };
@@ -49,6 +60,25 @@ const events = (() => {
 })();
 
 events.init();
+
+const updateItem = async (req) => {
+  const res = await fetch('/items', {
+    method: 'put',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      req,
+    }),
+  });
+  if (res.ok) {
+    const json = await res.json();
+    const msg = document.querySelector('#msg');
+    msg.innerHTML = json;
+    setTimeout(() => {
+      msg.remove();
+      window.location.reload(true);
+    }, 1000);
+  }
+};
 
 const deleteItem = async (id) => {
   const res = await fetch('/items', {

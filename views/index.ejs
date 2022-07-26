@@ -99,25 +99,32 @@
       <div class="grid">
         <% for(let i = 0; i < items.length; i++) {%>
         <div data-id=<%= items[i]["_id"] %> class="flow card">
+
+          <!-- ? Title -->
           <div class="title-field flex">
-            <div contenteditable="true"><%= items[i].title %></div>
+            <div data-<%-items[i]["_id"]%>="title" contenteditable="true"><%= items[i].title %></div>
           </div>
+
+          <!-- ? Description -->
           <div class="flex">
             <div>Description:</div>
-            <div contenteditable="true"><%= items[i].description %></div>
+            <div data-<%-items[i]["_id"]%>="description" contenteditable="true"><%= items[i].description %></div>
           </div>
+
+          <!-- ? Due Date -->
           <div>
             <label for="dueDate">Due Date:</label>
             <% if (items[i].dueDate === null) { %>
-            <input type="date" name="dueDate" value="">
+            <input type="date" name="dueDate" data-<%-items[i]["_id"]%>="dueDate" value="">
             <%} else { %>
-            <input type="date" name="dueDate" value="<%= items[i].dueDate.toISOString().slice(0, 10) %>">
+            <input type="date" name="dueDate" data-<%-items[i]["_id"]%>="dueDate" value="<%= items[i].dueDate.toISOString().slice(0, 10) %>">
             <% } %>
           </div>
 
+          <!-- ? Priority -->
           <div>
             <label for="priority">Priority:</label>
-            <select name="priority" id="">
+            <select name="priority" data-<%-items[i]["_id"]%>="priority">
             <% const priorityArr = ["low", "medium", "high", "urgent"]
             for (let j = 0; j < priorityArr.length; j++) { 
               if (items[i].priority === priorityArr[j]) {
@@ -130,9 +137,10 @@
             </select>
           </div>
 
+          <!-- ? Progress -->
           <div>
             <label for="progress">Progress:</label>
-            <select name="progress" id="">
+            <select name="progress" data-<%-items[i]["_id"]%>="progress">
             <% const progressArr = ["todo", "doing", "done"]
             for (let j = 0; j < progressArr.length; j++) { 
               if (items[i].progress === progressArr[j]) {
@@ -145,9 +153,10 @@
             </select>
           </div>
 
+          <!-- ? Project -->
           <div>
             <label for="project">Project:</label>
-            <select name="project">
+            <select name="project" data-<%-items[i]["_id"]%>="project">
               <option value="">Select one</option>
               <% for(let j = 0; j < projects.length; j++) {%>
               <% if (items[i].project === projects[j].title) { 

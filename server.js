@@ -53,10 +53,29 @@ app.post('/items', async (req, res) => {
 
 app.post('/projects', async (req, res) => {
   try {
-    console.log(req.body);
     const newProject = await new Project(req.body);
     await newProject.save();
     res.redirect('/');
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+app.put('/items', async (req, res) => {
+  try {
+    const id = await req.body.req['_id'];
+    const data = await req.body.req.data;
+    console.log(data);
+    const search = await Item.findById(id);
+    console.log(search);
+    search.title = data.title;
+    search.description = data.description;
+    search.dueDate = data.dueDate;
+    search.priority = data.priority;
+    search.progress = data.progress;
+    search.project = data.project;
+    await search.save();
+    res.json('Item updated');
   } catch (error) {
     console.error(error);
   }
