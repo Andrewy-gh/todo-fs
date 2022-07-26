@@ -42,7 +42,8 @@ const events = (() => {
     const deleteBtn = document.querySelectorAll('.delete-btn');
     deleteBtn.forEach((btn) => {
       btn.addEventListener('click', (e) => {
-        deleteItem(getId(e.target));
+        // deleteItem(getId(e.target));
+        serverRequest.deleteItem(getId(e.target));
       });
     });
   };
@@ -58,40 +59,47 @@ const events = (() => {
 
 events.init();
 
-const updateItem = async (req) => {
-  const res = await fetch('/items', {
-    method: 'put',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      req,
-    }),
-  });
-  if (res.ok) {
-    const json = await res.json();
-    const msg = document.querySelector('#msg');
-    msg.innerHTML = json;
-    setTimeout(() => {
-      msg.remove();
-      window.location.reload(true);
-    }, 1000);
-  }
-};
+const serverRequest = (() => {
+  const updateItem = async (req) => {
+    const res = await fetch('/items', {
+      method: 'put',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        req,
+      }),
+    });
+    if (res.ok) {
+      const json = await res.json();
+      const msg = document.querySelector('#msg');
+      msg.innerHTML = json;
+      setTimeout(() => {
+        msg.remove();
+        window.location.reload(true);
+      }, 1000);
+    }
+  };
 
-const deleteItem = async (id) => {
-  const res = await fetch('/items', {
-    method: 'delete',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      _id: id,
-    }),
-  });
-  if (res.ok) {
-    const json = await res.json();
-    const msg = document.querySelector('#msg');
-    msg.innerHTML = json;
-    setTimeout(() => {
-      msg.remove();
-      window.location.reload(true);
-    }, 1000);
-  }
-};
+  const deleteItem = async (id) => {
+    const res = await fetch('/items', {
+      method: 'delete',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        _id: id,
+      }),
+    });
+    if (res.ok) {
+      const json = await res.json();
+      const msg = document.querySelector('#msg');
+      msg.innerHTML = json;
+      setTimeout(() => {
+        msg.remove();
+        window.location.reload(true);
+      }, 1000);
+    }
+  };
+
+  return {
+    updateItem,
+    deleteItem,
+  };
+})();
