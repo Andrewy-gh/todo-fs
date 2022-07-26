@@ -24,8 +24,6 @@ const events = (() => {
     const updateBtn = document.querySelectorAll('.update-btn');
     updateBtn.forEach((btn) => {
       btn.addEventListener('click', (e) => {
-        // console.log(getId(e.target));
-        // console.log(document.querySelector(`[data-id="${getId(e.target)}"]`));
         const values = document.querySelectorAll(`[data-${getId(e.target)}]`);
         const req = {};
         req['_id'] = getId(e.target);
@@ -35,7 +33,6 @@ const events = (() => {
             (req.data[v.dataset[`${getId(e.target)}`]] =
               v.value || v.textContent)
         );
-        // console.log(req);
         updateItem(req);
       });
     });

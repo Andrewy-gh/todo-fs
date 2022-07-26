@@ -65,9 +65,7 @@ app.put('/items', async (req, res) => {
   try {
     const id = await req.body.req['_id'];
     const data = await req.body.req.data;
-    console.log(data);
     const search = await Item.findById(id);
-    console.log(search);
     search.title = data.title;
     search.description = data.description;
     search.dueDate = data.dueDate;
