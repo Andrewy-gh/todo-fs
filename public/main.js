@@ -33,7 +33,7 @@ const events = (() => {
             (req.data[v.dataset[`${getId(e.target)}`]] =
               v.value || v.textContent)
         );
-        updateItem(req);
+        serverRequest.updateItem(req);
       });
     });
   };

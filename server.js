@@ -66,12 +66,8 @@ app.put('/items', async (req, res) => {
     const id = await req.body.req['_id'];
     const data = await req.body.req.data;
     const search = await Item.findById(id);
-    search.title = data.title;
-    search.description = data.description;
-    search.dueDate = data.dueDate;
-    search.priority = data.priority;
-    search.progress = data.progress;
-    search.project = data.project;
+    Object.assign(search, data);
+    console.log(search);
     await search.save();
     res.json('Item updated');
   } catch (error) {
