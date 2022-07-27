@@ -1,3 +1,9 @@
+var options = {
+  valueNames: ['title', 'dueDate', 'priority'],
+};
+
+var todoList = new List('todoList', options);
+
 const events = (() => {
   const getId = (e) => e.parentElement.parentElement.parentElement.dataset.id;
 
