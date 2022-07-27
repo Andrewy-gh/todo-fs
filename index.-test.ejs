@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Todo List</title>
+  </head>
+  <body>
+    <div>
+      <% for(let i = 0; i < projects.length; i++) {%>
+      <a href="<%=`/projects?project=${projects[i].title}`%>">
+        <div class="card">
+          <div class="project-btn"><%= projects[i].title %></div>
+        </div>
+      </a>
+      <% } %>
+    </div>
+
+    <!-- ! All todo list items -->
+    <div class="items" id="todoList">
+      <div class="heading msg flex">
+        <div>
+          <h2>Items</h2>
+        </div>
+
+        <div id="msg"></div>
+
+        <div class="card">
+          <div class="sort" data-sort="dueDate">Sort by Due Date</div>
+        </div>
+        <div class="card">
+          <div class="sort" data-sort="priority">Sort by Priority</div>
+        </div>
+        <div class="card">
+          <div class="sort" data-sort="title">Sort by Title</div>
+        </div>
+      </div>
+
+      <div class="list grid">
+        <% for(let i = 0; i < items.length; i++) {%>
+        <div class="card">
+          <div>
+            <div class="title"><%= items[i].title %></div>
+          </div>
+          <div>
+            <div>
+              <% if (items[i].dueDate === null) { %>
+              <div class="dueDate"><%= items[i].dueDate %></div>
+              <%} else { %>
+              <div class="dueDate">
+                <%= items[i].dueDate.toISOString().slice(0, 10) %>
+              </div>
+              <% } %>
+            </div>
+          </div>
+          <div>
+            <div class="priority"><%= items[i].priority %></div>
+          </div>
+          <div>
+            <div><%= items[i].progress %></div>
+          </div>
+          <div><><%= items[i].project %></div>
+        </div>
+
+        <% } %>
+      </div>
+    </div>
+
+    <script src="./list.min.js"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>

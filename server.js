@@ -22,7 +22,17 @@ mongoose.connect(connectionString, {
 // Routes
 app.get('/', async (req, res) => {
   try {
-    const itemsRes = await Item.find(req.params);
+    const itemsRes = await Item.find();
+    const projectsRes = await Project.find();
+    res.render('index.ejs', { projects: projectsRes, items: itemsRes });
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+app.get('/sort', async (req, res) => {
+  try {
+    const itemsRes = await Item.find().sort({ dueDate: 1 });
     const projectsRes = await Project.find();
     res.render('index.ejs', { projects: projectsRes, items: itemsRes });
   } catch (error) {

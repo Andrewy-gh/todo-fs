@@ -58,7 +58,7 @@
 
     <!-- ! Projects -->
     <div class="projects">
-      <div class="title">
+      <div class="heading">
         <h2>Projects</h2>
       </div>
 
@@ -91,18 +91,33 @@
     </div>
 
     <!-- ! All todo list items -->
-    <div class="items">
-      <div class="title msg flex">
-        <div><h2>Items</h2></div>
+    <div class="items" id="todoList">
+
+      <div class="heading msg flex">
+        <div>
+          <h2>Items</h2>
+        </div>
+        
         <div id="msg"></div>
+
+        <div class="card">
+          <div class="sort" data-sort="dueDate">Sort by Due Date</div>
+        </div>
+        <div class="card">
+          <div class="sort" data-sort="priority">Sort by Priority</div>
+        </div>
+        <div class="card">
+          <div class="sort" data-sort="title">Sort by Title</div>
+        </div>
       </div>
-      <div class="grid">
+
+      <div class="list grid">
         <% for(let i = 0; i < items.length; i++) {%>
         <div data-id=<%= items[i]["_id"] %> class="flow card">
 
           <!-- ? Title -->
           <div class="title-field flex">
-            <div data-<%-items[i]["_id"]%>="title" contenteditable="true"><%= items[i].title %></div>
+            <div class="title" data-<%-items[i]["_id"]%>="title" contenteditable="true"><%= items[i].title %></div>
           </div>
 
           <!-- ? Description -->
@@ -115,23 +130,28 @@
           <div>
             <label for="dueDate">Due Date:</label>
             <% if (items[i].dueDate === null) { %>
-            <input type="date" name="dueDate" data-<%-items[i]["_id"]%>="dueDate" value="">
+            <input type="date" name="dueDate" class="dueDate" data-<%-items[i]["_id"]%>="dueDate" value="">
             <%} else { %>
-            <input type="date" name="dueDate" data-<%-items[i]["_id"]%>="dueDate" value="<%= items[i].dueDate.toISOString().slice(0, 10) %>">
+            <input type="date" name="dueDate" class="dueDate" data-<%-items[i]["_id"]%>="dueDate" value="<%= items[i].dueDate.toISOString().slice(0, 10) %>">
             <% } %>
           </div>
 
           <!-- ? Priority -->
           <div>
             <label for="priority">Priority:</label>
-            <select name="priority" data-<%-items[i]["_id"]%>="priority">
+            <select class="priority" name="priority" data-<%-items[i]["_id"]%>="priority">
+
             <% const priorityArr = ["low", "medium", "high", "urgent"]
             for (let j = 0; j < priorityArr.length; j++) { 
               if (items[i].priority === priorityArr[j]) {
                 const selected = "selected" %>
+
               <option value="<%= priorityArr[j] %>" <%=selected %>><%= priorityArr[j][0].toUpperCase() + priorityArr[j].slice(1) %></option>
+
               <% } else { %>
+
               <option value="<%= priorityArr[j] %>"><%= priorityArr[j][0].toUpperCase() + priorityArr[j].slice(1) %></option>
+
             <% } %>
             <% } %>
             </select>
@@ -145,9 +165,9 @@
             for (let j = 0; j < progressArr.length; j++) { 
               if (items[i].progress === progressArr[j]) {
                 const selected = "selected" %>
-              <option value="<%= progressArr[j]%>" <%=selected %>><%= progressArr[j][0].toUpperCase() + progressArr[j].slice(1) %></option>
+              <option class="priority" value="<%= progressArr[j]%>" <%=selected %>><%= progressArr[j][0].toUpperCase() + progressArr[j].slice(1) %></option>
               <% } else { %>
-              <option value="<%= progressArr[j]%>"><%= progressArr[j][0].toUpperCase() + progressArr[j].slice(1) %></option>
+              <option class="priority" value="<%= progressArr[j]%>"><%= progressArr[j][0].toUpperCase() + progressArr[j].slice(1) %></option>
             <% } %>
             <% } %>
             </select>
@@ -173,11 +193,13 @@
             <div><button type="button" class="update-btn">Update</button></div>
             <div><button type="button" class="delete-btn">Delete</button></div>
           </div>
+
         </div>
         <% } %>
       </div>
     </div>
 
+    <script src="./list.min.js"></script>
     <script src="./main.js"></script>
   </body>
 </html>
