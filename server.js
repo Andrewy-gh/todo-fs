@@ -71,6 +71,7 @@ app.post('/projects', async (req, res) => {
   }
 });
 
+// ? Handles updates to item's fields
 app.put('/items', async (req, res) => {
   try {
     const id = await req.body.req['_id'];

@@ -42,6 +42,10 @@ a {
   padding: 1rem;
 }
 
+.sort-btn > .card {
+  cursor: pointer;
+}
+
 select,
 button,
 .project-card {

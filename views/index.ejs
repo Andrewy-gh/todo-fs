@@ -99,6 +99,10 @@
         </div>
         
         <div id="msg"></div>
+      </div>
+
+      <!-- ? Sorting buttons -->
+      <div class="flex sort-btn">
 
         <div class="card">
           <div class="sort" data-sort="dueDate">Sort by Due Date</div>
@@ -111,6 +115,7 @@
         </div>
       </div>
 
+      <!-- ? Sortable cards -->
       <div class="list grid">
         <% for(let i = 0; i < items.length; i++) {%>
         <div data-id=<%= items[i]["_id"] %> class="flow card">
@@ -128,10 +133,13 @@
 
           <!-- ? Due Date -->
           <div>
-            <label for="dueDate">Due Date:</label>
             <% if (items[i].dueDate === null) { %>
+            <div class="dueDate hidden"></div>
+            <label for="dueDate">Due Date:</label>
             <input type="date" name="dueDate" class="dueDate" data-<%-items[i]["_id"]%>="dueDate" value="">
             <%} else { %>
+            <div class="dueDate hidden"><%= items[i].dueDate.toISOString().slice(0, 10) %>"></div>
+            <label for="dueDate">Due Date:</label>
             <input type="date" name="dueDate" class="dueDate" data-<%-items[i]["_id"]%>="dueDate" value="<%= items[i].dueDate.toISOString().slice(0, 10) %>">
             <% } %>
           </div>

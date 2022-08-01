@@ -7,10 +7,12 @@ var todoList = new List('todoList', options);
 const events = (() => {
   const getId = (e) => e.parentElement.parentElement.parentElement.dataset.id;
 
+  // ? Add new project button
   addProjectBtn = () => {
     const addProjectBtn = document.querySelector('#add-project');
     const addProjectForm = document.querySelector('#add-project-form');
 
+    //  ? Cancel new project form
     const cancelBtn = () => {
       const cancelBtn = document.querySelector('#cancel-btn');
       cancelBtn.addEventListener('click', () => {
@@ -26,6 +28,7 @@ const events = (() => {
     });
   };
 
+  // ? Updates todo list fields
   const updateBtn = () => {
     const updateBtn = document.querySelectorAll('.update-btn');
     updateBtn.forEach((btn) => {
@@ -48,7 +51,6 @@ const events = (() => {
     const deleteBtn = document.querySelectorAll('.delete-btn');
     deleteBtn.forEach((btn) => {
       btn.addEventListener('click', (e) => {
-        // deleteItem(getId(e.target));
         serverRequest.deleteItem(getId(e.target));
       });
     });
