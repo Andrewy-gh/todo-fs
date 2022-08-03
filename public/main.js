@@ -8,7 +8,7 @@ const events = (() => {
   const getId = (e) => e.parentElement.parentElement.parentElement.dataset.id;
 
   // ? Add new project button
-  addProjectBtn = () => {
+  const addProjectBtn = () => {
     const addProjectBtn = document.querySelector('#add-project');
     const addProjectForm = document.querySelector('#add-project-form');
 
