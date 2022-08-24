@@ -30,16 +30,6 @@ app.get('/', async (req, res) => {
   }
 });
 
-app.get('/sort', async (req, res) => {
-  try {
-    const itemsRes = await Item.find().sort({ dueDate: 1 });
-    const projectsRes = await Project.find();
-    res.render('index.ejs', { projects: projectsRes, items: itemsRes });
-  } catch (error) {
-    console.error(error);
-  }
-});
-
 app.get('/projects/', async (req, res) => {
   try {
     const projectName = req.query.project;
