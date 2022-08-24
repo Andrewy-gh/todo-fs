@@ -8,3 +8,5 @@ router.post('/items', todosController.createItem);
 router.post('/projects', todosController.createProject);
 router.put('/items', todosController.updateItem);
 router.delete('/items', todosController.deleteItem);
+
+module.exports = router;

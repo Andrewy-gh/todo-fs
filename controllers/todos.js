@@ -1,5 +1,6 @@
-const Item = require('./models/Item');
-const Project = require('./models/Project');
+const mongoose = require('mongoose');
+const Item = require('../models/Item');
+const Project = require('../models/Project');
 
 module.exports = {
   getItems: async (req, res) => {
