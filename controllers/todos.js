@@ -36,7 +36,7 @@ module.exports = {
   },
 
   // app.post('/projects', async (req, res) => {
-  creaeteProject: async (req, res) => {
+  createProject: async (req, res) => {
     try {
       const newProject = await new Project(req.body);
       await newProject.save();
