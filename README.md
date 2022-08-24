@@ -10,6 +10,8 @@ Full stack To Do List app.
 
 ## Optimizations
 
+Implemented MVC architecture.
+
 ## Lessons Learned:
 
 ## Examples:
