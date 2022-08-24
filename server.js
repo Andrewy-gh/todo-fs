@@ -1,11 +1,17 @@
-require('dotenv').config();
+const dotenv = require('dotenv');
 
 const express = require('express');
 const mongoose = require('mongoose');
 const Item = require('./items/Item');
 const Project = require('./projects/Project');
 const app = express();
-const connectionString = process.env.DB_URL;
+
+const connectDB = require('./config/database');
+
+// Load config
+dotenv.config({ path: './config/config.env' });
+
+connectDB();
 
 app.set('view engine', 'ejs');
 
@@ -14,10 +20,10 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-mongoose.connect(connectionString, {
-  dbName: 'todo-list',
-  useNewUrlParser: true,
-});
+// mongoose.connect(connectionString, {
+//   dbName: 'todo-list',
+//   useNewUrlParser: true,
+// });
 
 // Routes
 app.get('/', async (req, res) => {
