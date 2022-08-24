@@ -34,7 +34,7 @@ app.get('/', async (req, res) => {
   }
 });
 
-app.get('/projects/', async (req, res) => {
+app.get('/projects', async (req, res) => {
   try {
     const projectName = req.query.project;
     const itemRes = await Item.find({ project: projectName });
