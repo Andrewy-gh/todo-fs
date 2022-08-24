@@ -2,8 +2,6 @@ const dotenv = require('dotenv');
 
 const express = require('express');
 const mongoose = require('mongoose');
-const Item = require('./items/Item');
-const Project = require('./projects/Project');
 const app = express();
 
 const connectDB = require('./config/database');
