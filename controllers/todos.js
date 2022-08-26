@@ -7,7 +7,7 @@ module.exports = {
     try {
       const itemsRes = await Item.find();
       const projectsRes = await Project.find();
-      res.render('index.ejs', { projects: projectsRes, items: itemsRes });
+      res.render('todos.ejs', { projects: projectsRes, items: itemsRes });
     } catch (error) {
       console.error(error);
     }
@@ -19,7 +19,7 @@ module.exports = {
       const projectName = req.query.project;
       const itemRes = await Item.find({ project: projectName });
       const projectsRes = await Project.find();
-      res.render('index.ejs', { projects: projectsRes, items: itemRes });
+      res.render('todos.ejs', { projects: projectsRes, items: itemRes });
     } catch (error) {
       console.error(error);
     }
@@ -30,7 +30,7 @@ module.exports = {
     try {
       const newItem = await new Item(req.body);
       await newItem.save();
-      res.redirect('/');
+      res.redirect('/todos');
     } catch (error) {
       console.error(error);
     }
@@ -41,7 +41,7 @@ module.exports = {
     try {
       const newProject = await new Project(req.body);
       await newProject.save();
-      res.redirect('/');
+      res.redirect('/todos');
     } catch (error) {
       console.error(error);
     }
