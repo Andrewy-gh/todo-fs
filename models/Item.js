@@ -9,6 +9,10 @@ const itemSchema = new Schema(
     priority: String,
     progress: String,
     project: String,
+    userId: {
+      type: String,
+      required: true,
+    },
   },
   { collection: 'todo-list' }
 );
